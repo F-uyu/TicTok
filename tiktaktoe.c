@@ -17,12 +17,13 @@ void Player2Move();
 void AiMove();
 char checkWinner();
 void printWinner(char);
+void PrintWinnerReal(char);
 
 int main(){
     char winner = ' ';
     char response;
     int option;
-    printf("Chose 2 for ai, choose 1 for person\n");
+    printf("Chose 2 for person, choose 1 for ai\n");
     scanf("%d", &option);
     switch (option){
         case 1:
@@ -61,6 +62,7 @@ int main(){
                 while (winner == ' ' && checkSpaces() != 0){
                     printBoard();
                     Player1Move();
+                    printBoard();
                     winner = checkWinner();
                     if (winner != ' ' || checkSpaces() == 0){
                         break;
@@ -72,7 +74,7 @@ int main(){
                     }
                 }
                 printBoard();
-                printWinner(winner);
+                PrintWinnerReal(winner);
                 printf("\n PLay again? (Y/N): ");
                 scanf("%c");
                 scanf("%c", &response);
@@ -122,6 +124,17 @@ void printBoard(){
     
 
 
+}
+void PrintWinnerReal(char winner){
+    if (winner == PLAYER1){
+        printf("You win!");
+    }
+    else if (winner == PLAYER2){
+        printf("the other player wins!");
+    }
+    else{
+        printf("Tie'");
+    }
 }
 int checkSpaces(){
     int open = 9;
