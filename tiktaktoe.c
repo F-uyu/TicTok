@@ -23,9 +23,12 @@ int main(){
     char winner = ' ';
     char response;
     int option;
+    // prompt user for game they wish to play
     printf("Chose 2 for person, choose 1 for ai\n");
+    //read information from console
     scanf("%d", &option);
     switch (option){
+        //if they chose to play vs a bot, choose the bot layout
         case 1:
             do{
                 winner = ' ';
@@ -33,19 +36,23 @@ int main(){
                 resetBoard();
 
                 while (winner == ' ' && checkSpaces() != 0){
+                    //each time a player makes a move, display the board and what they picked
                     printBoard();
                     Player1Move();
                     winner = checkWinner();
+                    //keep going until a winner or a tie
                     if (winner != ' ' || checkSpaces() == 0){
                         break;
                     }
                     AiMove();
                     winner = checkWinner();
+                    //keep going until a winner or a tie
                     if (winner != ' ' || checkSpaces() == 0){
                         break;
                     }
                 }
                 printBoard();
+                //once someone ties or wins, stop the game and declare the winner
                 printWinner(winner);
                 printf("\n PLay again? (Y/N): ");
                 scanf("%c");
@@ -53,6 +60,7 @@ int main(){
                 response = toupper(response);
             } while (response == 'Y');
             break;
+        //if they chose to play vs a real human, choose the human layout.
         case 2:
             do{
                 winner = ' ';
@@ -60,20 +68,26 @@ int main(){
                 resetBoard();
 
                 while (winner == ' ' && checkSpaces() != 0){
+                    //each time a player makes a move, display the board and what they picked
                     printBoard();
                     Player1Move();
-                    printBoard();
+                    
                     winner = checkWinner();
+                    //keep going until a winner or a tie
                     if (winner != ' ' || checkSpaces() == 0){
                         break;
                     }
+                    //each time a player makes a move, display the board and what they picked
+                    printBoard();
                     Player2Move();
                     winner = checkWinner();
+                    //keep going until a winner or a tie
                     if (winner != ' ' || checkSpaces() == 0){
                         break;
                     }
                 }
                 printBoard();
+                //once someone ties or wins, stop the game and declare the winner
                 PrintWinnerReal(winner);
                 printf("\n PLay again? (Y/N): ");
                 scanf("%c");
@@ -86,25 +100,6 @@ int main(){
 
 
     }
-    
-    
-    
-    
-    // prompt user for game they wish to play
-
-    //read information from console
-
-    //if they chose to play vs a bot, choose the bot layout
-
-    //if they chose to play vs a real human, choose the human layout.
-
-    //each time a player makes a move, display the board and what they picked
-
-    //keep going until a winner or a tie
-
-    //once someone ties or wins, stop the game and declare the winner
-
-    
     return 0;
 }
 
