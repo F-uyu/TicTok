@@ -26,33 +26,65 @@ int main(){
     scanf("%d", &option);
     switch (option){
         case 1:
-    }
-    do
-    {
-        winner = ' ';
-        response = ' ';
-        resetBoard();
+            do{
+                winner = ' ';
+                response = ' ';
+                resetBoard();
 
-        while (winner == ' ' && checkSpaces() != 0){
-            printBoard();
-            Player1Move();
-            winner = checkWinner();
-            if (winner != ' ' || checkSpaces() == 0){
-                break;
-            }
-            AiMove();
-            winner = checkWinner();
-            if (winner != ' ' || checkSpaces() == 0){
-                break;
-            }
-        }
-        printBoard();
-        printWinner(winner);
-        printf("\n PLay again? (Y/N): ");
-        scanf("%c");
-        scanf("%c", &response);
-        response = toupper(response);
-    } while (response == 'Y');
+                while (winner == ' ' && checkSpaces() != 0){
+                    printBoard();
+                    Player1Move();
+                    winner = checkWinner();
+                    if (winner != ' ' || checkSpaces() == 0){
+                        break;
+                    }
+                    AiMove();
+                    winner = checkWinner();
+                    if (winner != ' ' || checkSpaces() == 0){
+                        break;
+                    }
+                }
+                printBoard();
+                printWinner(winner);
+                printf("\n PLay again? (Y/N): ");
+                scanf("%c");
+                scanf("%c", &response);
+                response = toupper(response);
+            } while (response == 'Y');
+            break;
+        case 2:
+            do{
+                winner = ' ';
+                response = ' ';
+                resetBoard();
+
+                while (winner == ' ' && checkSpaces() != 0){
+                    printBoard();
+                    Player1Move();
+                    winner = checkWinner();
+                    if (winner != ' ' || checkSpaces() == 0){
+                        break;
+                    }
+                    Player2Move();
+                    winner = checkWinner();
+                    if (winner != ' ' || checkSpaces() == 0){
+                        break;
+                    }
+                }
+                printBoard();
+                printWinner(winner);
+                printf("\n PLay again? (Y/N): ");
+                scanf("%c");
+                scanf("%c", &response);
+                response = toupper(response);
+            } while (response == 'Y');
+            break;
+        default:
+            printf("Invalid");
+
+
+    }
+    
     
     
     
@@ -123,7 +155,23 @@ void Player1Move(){
     
 }
 void Player2Move(){
-
+    int row;
+    int column;
+    do{
+        printf("Enter row 1-3: ");
+        scanf("%d", &row);
+        row--;
+        printf("Enter column 1-3: ");
+        scanf("%d", &column);
+        column--;
+        if (board[row][column] != ' '){
+            printf("Invalid \n");
+        }
+        else{
+            board[row][column] = PLAYER2;
+            break;
+        }
+    } while (board[row][column] != ' ');
 }
 void AiMove(){
     srand(time(0));
